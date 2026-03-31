@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brian's Romania 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --dark: #0E0C09;
+    --dark2: #1A1710;
+    --dark3: #252218;
+    --cream: #F5EDD6;
+    --cream2: #EDE0C0;
+    --text: #D4C9A8;
+    --muted: #7A7260;
+    --red: #C0392B;
+    --green: #2ECC71;
+    --blue: #5B9BD5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .hero {
+    background: linear-gradient(135deg, #0E0C09 0%, #1F1A0F 50%, #0E0C09 100%);
+    border-bottom: 1px solid rgba(201,168,76,0.3);
+    padding: 60px 40px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(201,168,76,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-flag {
+    font-size: 48px;
+    margin-bottom: 16px;
+    display: block;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 6vw, 64px);
+    color: var(--gold-light);
+    letter-spacing: 2px;
+    line-height: 1.1;
+    animation: fadeDown 0.8s 0.1s ease both;
+  }
+
+  .hero-sub {
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 12px;
+    animation: fadeDown 0.8s 0.2s ease both;
+  }
+
+  .hero-dates {
+    display: inline-block;
+    margin-top: 24px;
+    padding: 8px 24px;
+    border: 1px solid rgba(201,168,76,0.4);
+    border-radius: 2px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    animation: fadeDown 0.8s 0.3s ease both;
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* LEGEND */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    padding: 20px 40px;
+    background: var(--dark2);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 2px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .badge-confirmed { background: rgba(46,204,113,0.15); color: #2ECC71; border: 1px solid rgba(46,204,113,0.3); }
+  .badge-backup { background: rgba(91,155,213,0.15); color: #5B9BD5; border: 1px solid rgba(91,155,213,0.3); }
+  .badge-warn { background: rgba(192,57,43,0.15); color: #E74C3C; border: 1px solid rgba(192,57,43,0.3); }
+  .badge-tour { background: rgba(201,168,76,0.15); color: var(--gold); border: 1px solid rgba(201,168,76,0.3); }
+
+  /* MAIN LAYOUT */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+
+  /* SECTION HEADER */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 48px 0 24px;
+  }
+
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--gold);
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+
+  .section-divider {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, rgba(201,168,76,0.4), transparent);
+  }
+
+  /* DAY BLOCK */
+  .day-block {
+    margin-bottom: 12px;
+  }
+
+  .day-label {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 10px 0 6px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    margin-bottom: 8px;
+  }
+
+  .day-label .day-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--cream);
+  }
+
+  .day-label .day-date {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* EVENT CARD */
+  .event {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 0 16px;
+    align-items: start;
+    padding: 14px 16px;
+    margin-bottom: 6px;
+    background: var(--dark2);
+    border: 1px solid rgba(255,255,255,0.04);
+    border-left: 3px solid transparent;
+    border-radius: 2px;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+
+  .event:hover {
+    background: var(--dark3);
+    border-left-color: var(--gold);
+    transform: translateX(2px);
+  }
+
+  .event.is-backup {
+    opacity: 0.6;
+    border-left-color: rgba(91,155,213,0.4);
+    border-style: dashed;
+  }
+
+  .event.is-backup:hover { opacity: 0.85; }
+
+  .event.has-warn { border-left-color: rgba(231,76,60,0.6); }
+
+  .event-time {
+    font-size: 13px;
+    color: var(--gold);
+    font-weight: 500;
+    padding-top: 2px;
+    letter-spacing: 0.5px;
+  }
+
+  .event-time .duration {
+    display: block;
+    font-size: 10px;
+    color: var(--muted);
+    font-weight: 300;
+    margin-top: 2px;
+    letter-spacing: 0;
+  }
+
+  .event-body {}
+
+  .event-title {
+    font-size: 15px;
+    color: var(--cream);
+    font-weight: 500;
+    line-height: 1.3;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .event-emoji {
+    font-size: 15px;
+  }
+
+  .event-meta {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .event-meta .platform {
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .event-meta .highlight {
+    color: var(--cream2);
+  }
+
+  .event-meta .warn-text {
+    color: #E74C3C;
+  }
+
+  .event-notes {
+    margin-top: 6px;
+    padding: 8px 12px;
+    background: rgba(0,0,0,0.2);
+    border-left: 2px solid rgba(201,168,76,0.3);
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .event-notes em { color: var(--cream2); font-style: normal; }
+
+  .event-badge-col {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-end;
+    padding-top: 2px;
+  }
+
+  .res-num {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+  }
+
+  /* TRANSYLVANIA TABLE */
+  .region-block {
+    margin-bottom: 32px;
+  }
+
+  .region-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    color: var(--cream);
+    margin-bottom: 12px;
+    padding-left: 12px;
+    border-left: 3px solid var(--gold);
+  }
+
+  /* FOOD CHECKLIST */
+  .checklist {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: var(--dark2);
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 2px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+  }
+
+  .check-item:hover { background: var(--dark3); border-color: rgba(201,168,76,0.2); }
+  .check-item.checked { opacity: 0.5; text-decoration: line-through; }
+
+  .check-box {
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--muted);
+    border-radius: 2px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    transition: all 0.2s;
+  }
+
+  .check-item.checked .check-box {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--dark);
+  }
+
+  /* CAMERA TIP */
+  .camera-banner {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(201,168,76,0.03));
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 2px;
+    margin: 32px 0;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .camera-banner .cam-icon { font-size: 28px; flex-shrink: 0; }
+  .camera-banner strong { color: var(--gold-light); }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 32px;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .event { grid-template-columns: 65px 1fr; }
+    .event-badge-col { display: none; }
+    .hero { padding: 40px 20px 36px; }
+  }
+
+  /* Print */
+  @media print {
+    body { background: white; color: black; }
+    .event { background: #f9f9f9; border-color: #ddd; }
+    .hero { background: #f0e8d0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <span class="hero-flag">🇷🇴</span>
+  <h1 class="hero-title">Romania 2026</h1>
+  <p class="hero-sub">Brian Konar · Travel Itinerary</p>
+  <div class="hero-dates">April 5 – 12, 2026 · Bucharest + Transylvania</div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><span class="badge badge-confirmed">✓ Confirmed</span> Reservation in hand</div>
+  <div class="legend-item"><span class="badge badge-backup">~ Backup</span> Walk-in / no reservation</div>
+  <div class="legend-item"><span class="badge badge-warn">⚠ Verify</span> Conflicting details</div>
+  <div class="legend-item"><span class="badge badge-tour">Tour</span> Guided experience</div>
+</div>
+
+<div class="container">
+
+  <!-- CAMERA TIP -->
+  <div class="camera-banner">
+    <span class="cam-icon">📷</span>
+    <div>
+      <strong>Sony a6700 · 16–55mm f/2.8</strong> — Key shots: Palace of Parliament interior (f/2.8 in low light), Stavropoleos Church candlelit midnight mass, communist-era streetscapes on Apr 11. The 16mm end earns its keep inside the Parliament's massive halls.
+    </div>
+  </div>
+
+  <!-- BUCHAREST SECTION -->
+  <div class="section-header">
+    <h2>📍 Bucharest</h2>
+    <div class="section-divider"></div>
+  </div>
+
+  <!-- APR 5 -->
+  <div class="day-block">
+    <div class="day-label">
+      <span class="day-name">Sunday</span>
+      <span class="day-date">April 5</span>
+    </div>
+
+    <div class="event">
+      <div class="event-time">5:00 PM<span class="duration">2 hrs</span></div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">🚶</span> Delightful Bucharest Highlights Walking Tour</div>
+        <div class="event-meta"><span class="platform">GuruWalk</span> · Guide: <span class="highlight">Adrian (PRO)</span></div>
+      </div>
+      <div class="event-badge-col"><span class="badge badge-confirmed">✓ Confirmed</span><span class="badge badge-tour">Tour</span></div>
+    </div>
+
+    <div class="event">
+      <div class="event-time">7:30 PM<span class="duration">2 hrs</span></div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">🍢</span> Dinner — Hanu Lui Manuc</div>
+        <div class="event-meta"><span class="platform">Direct</span> · Res <span class="highlight">#1749959</span> · Str. Franceză 62 · +40730.188.653</div>
+        <div class="event-notes">Sit at <em>Terasă (main room)</em>. Order: chicken kebab, homemade sausages, Papanași for 2</div>
+      </div>
+      <div class="event-badge-col"><span class="badge badge-confirmed">✓ Confirmed</span></div>
+    </div>
+
+    <div class="event is-backup">
+      <div class="event-time">—<span class="duration">Any evening</span></div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">🍺</span> Caru Cu Bere <em style="font-size:12px;color:#5B9BD5;font-style:italic;"> — worth trying if you get a chance</em></div>
+        <div class="event-meta">Walk-in · No reservation · Request <span class="highlight">main classic room</span></div>
+        <div class="event-notes">Order: <em>Zacuscă dip + bread chips, Fresh eggplant dip, Danube carp + polenta</em></div>
+      </div>
+      <div class="event-badge-col"><span class="badge badge-backup">~ Backup</span></div>
+    </div>
+  </div>
+
+  <!-- APR 6 -->
+  <div class="day-block">
+    <div class="day-label">
+      <span class="day-name">Monday</span>
+      <span class="day-date">April 6</span>
+    </div>
+
+    <div class="event">
+      <div class="event-time">10:30 AM<span class="duration">2.5 hrs</span></div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">🚶</span> Bucharest in One Tour: Communism, Old Town & Parliament</div>
+        <div class="event-meta"><span class="platform">BTrip / GuruWalk</span> · Guru: Bucharest Free Tours</div>
+        <div class="event-notes">Meet at <em>Romanian Athenaeum building steps</em> — look for blue sign reading "BTrip Bucharest Free Walking Tour"</div>
+      </div>
+      <div class="event-badge-col"><span class="badge badge-confirmed">✓ Confirmed</span><span class="badge badge-tour">Tour</span></div>
+    </div>
+
+    <div class="event">
+      <div class="event-time">3:30 PM<span class="duration">1 hr</span></div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">🏛️</span> Palace of Parliament — Tickets & Guided Tour</div>
+        <div class="event-meta"><span class="platform">GetYourGuide</span> · <span class="highlight">$69.36</span> · 2 Adults · English · Ref: <span class="highlight">GYG9966Q9GBG</span></div>
+        <div class="event-notes">
+          🪪 <em><strong style="color:#E8C97A">Bring original Passport or EU ID</strong> — required at security checkpoint.</em><br>
+          📍 <em><strong style="color:#E8C97A">Weekday entry → Entrance A3S2</strong>, Northern side, Strada Izvor 2-4. Walk through inner court + parking area. Find your CT&amp;T rep (CT&amp;T badge) near the coffee shop area, 15 min before tour.</em><br>
+          ⚠️ <em>Palace may be closed on public holidays or events. Reconfirmed day-of. No storage/wardrobe on site.</em><br>
+          📷 <em>Shoot wide at 16mm — the scale is insane.</em>
+        </div>
+      </div>
+      <div class="event-badge-col"><span class="badge badge-confirmed">✓ Confirmed</span><span class="badge badge-tour">Tour</span></div>
+    </div>
+
+    <div class="event">
+      <div class="event-time">8:00 PM<span class="duration">~2 hrs</span></div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">🍆</span> Dinner — Aubergine Old Town</div>
+        <div class="event-meta"><span class="platform">Ontopo</span> · Reserved · Strada Smârdan, Centrul Vechi</div>
+        <div class="event-notes">They'll contact you day-of to confirm arrival.</div>
+      </div>
+      <div class="event-badge-col"><span class="badge badge-confirmed">✓ Confirmed</span></div>
+    </div>
+  </div>
+
+  <!-- APR 7–9 placeholder -->
+  <div class="day-block">
+    <div class="day-label">
+      <span class="day-name">Tue – Thu</span>
+      <span class="day-date">April 7–9 · Free Days</span>
+    </div>
+    <div class="event">
+      <div class="event-time">—</div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">🗺️</span> Explore · Old Town (Lipscani) + Coffee Shops</div>
+        <div class="event-meta">Try <span class="highlight">Origo Coffee</span> and <span class="highlight">M60 Café</span> near hotel · LeBab for lunch in Old Town · Street food: Gogoși, Covrigi, Papanași</div>
+      </div>
+      <div class="event-badge-col"></div>
+    </div>
+  </div>
+
+  <!-- APR 10 -->
+  <div class="day-block">
+    <div class="day-label">
+      <span class="day-name">Friday</span>
+      <span class="day-date">April 10</span>
+    </div>
+
+    <div class="event has-warn">
+      <div class="event-time">9:00 PM<span class="duration">2 hrs</span></div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">🍽️</span> Dinner — Linea / Closer to the Moon</div>
+        <div class="event-meta"><span class="platform">Direct</span> · Res <span class="highlight">#25492379</span> · Table held 15 min · Last orders 11:45 PM</div>
+        <div class="event-notes"><span style="color:#E74C3C;">⚠ Address conflict:</span> Booking says <em>Strada Lipscani 17</em> · Notes say <em>Calea Victoriei 17</em> — verify before you go!</div>
+      </div>
+      <div class="event-badge-col"><span class="badge badge-confirmed">✓ Confirmed</span><span class="badge badge-warn">⚠ Verify</span></div>
+    </div>
+  </div>
+
+  <!-- APR 11 -->
+  <div class="day-block">
+    <div class="day-label">
+      <span class="day-name">Saturday</span>
+      <span class="day-date">April 11 · <span style="color:#E74C3C;font-size:11px;">PACKED DAY — pace yourself</span></span>
+    </div>
+
+    <div class="event">
+      <div class="event-time">10:30 AM<span class="duration">2.5 hrs</span></div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">🚶</span> Life in Communist Bucharest Free Walking Tour</div>
+        <div class="event-meta"><span class="platform">Walkabout Free Tours / GuruWalk</span></div>
+        <div class="event-notes">Meet at <em>Rebirth Memorial, Revolution Square</em> — look for the orange umbrella</div>
+      </div>
+      <div class="event-badge-col"><span class="badge badge-confirmed">✓ Confirmed</span><span class="badge badge-tour">Tour</span></div>
+    </div>
+
+    <div class="event">
+      <div class="event-time">2:30 PM<span class="duration">~2–3 hrs</span></div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">🚌</span> The Real Tour of Communism</div>
+        <div class="event-meta"><span class="platform">GetYourGuide / Viator</span> · <span class="highlight">$63.66</span> · Ref <span class="highlight">#1377528999</span> · Booking <span class="highlight">#1760240085</span></div>
+        <div class="event-notes">See ticket for exact meeting point location.</div>
+      </div>
+      <div class="event-badge-col"><span class="badge badge-confirmed">✓ Confirmed</span><span class="badge badge-tour">Tour</span></div>
+    </div>
+
+    <div class="event">
+      <div class="event-time">9:00 PM<span class="duration">2 hrs</span></div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">🍹</span> Dinner — Nomad Skybar</div>
+        <div class="event-meta"><span class="platform">Direct</span> · Strada Smârdan 30, Old Town · 2 people</div>
+      </div>
+      <div class="event-badge-col"><span class="badge badge-confirmed">✓ Confirmed</span></div>
+    </div>
+
+    <div class="event">
+      <div class="event-time">~11:45 PM<span class="duration">~1.5 hrs</span></div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">⛪</span> Midnight Mass — Stavropoleos Church</div>
+        <div class="event-meta">Orthodox Easter midnight mass · Built 1724 · One of Bucharest's most ornate churches</div>
+        <div class="event-notes"><em>Perfect for the a6700 — carved stone facade + candlelight at f/2.8 will be extraordinary.</em></div>
+      </div>
+      <div class="event-badge-col"></div>
+    </div>
+  </div>
+
+  <!-- APR 12 -->
+  <div class="day-block">
+    <div class="day-label">
+      <span class="day-name">Sunday</span>
+      <span class="day-date">April 12 · Easter</span>
+    </div>
+
+    <div class="event">
+      <div class="event-time">10:00 AM<span class="duration">2h 15m</span></div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">🚶</span> Essential History: What It REALLY Felt Like to Live Under Communism</div>
+        <div class="event-meta"><span class="platform">GuruWalk</span> · Guide: <span class="highlight">Cristian (PRO)</span></div>
+        <div class="event-notes">Meet <em>in front of the horse statue, University Square (Piața Universității)</em></div>
+      </div>
+      <div class="event-badge-col"><span class="badge badge-confirmed">✓ Confirmed</span><span class="badge badge-tour">Tour</span></div>
+    </div>
+
+    <div class="event">
+      <div class="event-time">12:30 PM</div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">🥩</span> Easter Brunch — JW Steakhouse</div>
+        <div class="event-meta"><span class="platform">JW Marriott</span> · Calea 13 Septembrie 90 · +40 21-403-1903</div>
+      </div>
+      <div class="event-badge-col"><span class="badge badge-confirmed">✓ Confirmed</span></div>
+    </div>
+
+    <div class="event">
+      <div class="event-time">Evening</div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">🐟</span> Dinner — Sharkia</div>
+        <div class="event-meta">Seafood dinner · Reservation details TBD</div>
+      </div>
+      <div class="event-badge-col"></div>
+    </div>
+  </div>
+
+  <!-- TRANSYLVANIA -->
+  <div class="section-header">
+    <h2>🏰 Tours of Romania — Transylvanian Encounter</h2>
+    <div class="section-divider"></div>
+  </div>
+
+  <div style="padding:12px 16px;background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.2);border-radius:2px;margin-bottom:20px;font-size:12px;color:var(--text);line-height:1.7;">
+    <strong style="color:var(--gold-light);">Compass Travel / Tours of Romania</strong> · 4-Day Exclusive Cultural Tour · Private sedan + English-speaking guide throughout<br>
+    <strong style="color:var(--cream);">€684/person</strong> (party of 2) · Includes: 3 hotel nights, 4 breakfasts, all sightseeing, fuel &amp; parking, guide expenses, VAT<br>
+    <strong style="color:var(--gold);">3 UNESCO World Heritage Sites:</strong> Sibiu Historic Center · Biertan Fortified Church · Sighișoara Historic Center<br>
+    <span style="color:var(--muted);">Not included: admissions (pay on spot), 2.5% credit card fee, gratuities</span>
+  </div>
+
+  <!-- DAY 1 -->
+  <div class="region-block">
+    <div class="region-title">Day 1 — Tuesday, April 7 · Bucharest → Olt River Gorge → Sibiu</div>
+
+    <div class="event">
+      <div class="event-time">8:00 AM</div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">🚗</span> Meet guide at hotel · Depart for Transylvania</div>
+        <div class="event-meta">Scenic drive via <span class="highlight">Olt River &amp; Gorge</span> · Brief stop at <span class="highlight">Cozia Monastery (1388)</span></div>
+      </div>
+      <div class="event-badge-col"><span class="badge badge-tour">Tour</span></div>
+    </div>
+
+    <div class="event">
+      <div class="event-time">Afternoon</div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">🚶</span> Sibiu (Hermannstadt) Old Town Walking Tour</div>
+        <div class="event-meta">Great &amp; Lesser Squares (UNESCO) · Liars' Bridge · merchant house "sleepy eye" dormers · defense walls &amp; guild towers</div>
+        <div class="event-notes">Remainder of day free in charming Old Town. <em>Hotel: MyContinental ★★★</em></div>
+      </div>
+      <div class="event-badge-col"><span class="badge badge-tour">Tour</span></div>
+    </div>
+
+    <div class="event">
+      <div class="event-time">Lunch</div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">🍽️</span> Crama Sibiul Vechi</div>
+        <div class="event-notes">Order: <em>Salată de vinete (eggplant salad) + Zacuscă + bread</em></div>
+      </div>
+      <div class="event-badge-col"></div>
+    </div>
+
+    <div class="event">
+      <div class="event-time">Dinner</div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">🍽️</span> Pasaj</div>
+        <div class="event-meta">Modern Romanian, locally sourced · Near Stair's Tower Passage</div>
+        <div class="event-notes">One of the best foodie spots in Sibiu. Slightly pricier but worth it.</div>
+      </div>
+      <div class="event-badge-col"></div>
+    </div>
+
+    <div class="event">
+      <div class="event-time">Dessert</div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">🍰</span> Delicii Sibiene Bakery <em style="font-size:11px;color:#5B9BD5">(authentic)</em> or Kürtőskalács stand, Piața Mare <em style="font-size:11px;color:#C9A84C">(insanely good)</em></div>
+        <div class="event-notes">Bakery: <em>Amandință + Cornulețe</em> (classic communist-era). Piața Mare: chimney cake. Also: Scufița Roșie for apple pie.</div>
+      </div>
+      <div class="event-badge-col"></div>
+    </div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div class="region-block">
+    <div class="region-title">Day 2 — Wednesday, April 8 · Sibiu → Biertan → Sighișoara</div>
+
+    <div class="event">
+      <div class="event-time">Morning</div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">🛒</span> Sibiu Farmers' Market + Departure</div>
+        <div class="event-meta">Quick visit to open-air market · then drive through Saxon village valley of Târnava</div>
+      </div>
+      <div class="event-badge-col"></div>
+    </div>
+
+    <div class="event">
+      <div class="event-time">Midday</div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">⛪</span> Biertan Fortified Church — UNESCO World Heritage Site</div>
+        <div class="event-meta">Former Seat of Lutheran Bishops · Three belts of fortification · One of Romania's most impressive medieval structures</div>
+        <div class="event-notes"><em>Optional: Gypsy village &amp; home visit (pay on spot, based on availability)</em></div>
+      </div>
+      <div class="event-badge-col"><span class="badge badge-tour">Tour</span></div>
+    </div>
+
+    <div class="event">
+      <div class="event-time">Afternoon</div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">🏰</span> Sighișoara Upper Town — UNESCO World Heritage Site</div>
+        <div class="event-meta">Only still-inhabited medieval citadel in Europe · Two citadel squares · Scholars' Staircase · House with Antler · Clock Tower (climb for views) · Torture Chamber · Weapon Museum</div>
+        <div class="event-notes"><em><span class="highlight">Vlad the Impaler (Dracula) was born here in 1431.</span> Hotel: The House with Antler ★★★ — previously used by King Charles III during early travels to Transylvania.</em></div>
+      </div>
+      <div class="event-badge-col"><span class="badge badge-tour">Tour</span></div>
+    </div>
+
+    <div class="event">
+      <div class="event-time">Dinner</div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">🍽️</span> Casa Georgius Krauss — Vlad the Impaler's Birthplace</div>
+        <div class="event-meta">Vlad the Impaler's <span class="highlight">actual birthplace</span> · Seafood + salmon with rice</div>
+      </div>
+      <div class="event-badge-col"></div>
+    </div>
+
+    <div class="event">
+      <div class="event-time">Dessert</div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">🍰</span> Medieval Cafe</div>
+        <div class="event-meta">Medieval cellar setting · Full Transylvania vibe</div>
+        <div class="event-notes">Must order: <em>Papanași + Lichiu (plum cake)</em></div>
+      </div>
+      <div class="event-badge-col"></div>
+    </div>
+  </div>
+
+  <!-- DAY 3 -->
+  <div class="region-block">
+    <div class="region-title">Day 3 — Thursday, April 9 · Sighișoara → Saxon Villages → Viscri → Brașov</div>
+
+    <div class="event">
+      <div class="event-time">Morning</div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">🚗</span> Saxon Village Trail South · Saschiz → Viscri</div>
+        <div class="event-meta"><span class="highlight">Viscri</span> — where King Charles III bought old Saxon homes · En-route view of <span class="highlight">Rupea Citadel</span></div>
+      </div>
+      <div class="event-badge-col"><span class="badge badge-tour">Tour</span></div>
+    </div>
+
+    <div class="event">
+      <div class="event-time">Afternoon</div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">🚶</span> Brașov Old Town Walking Tour</div>
+        <div class="event-meta">Late Gothic <span class="highlight">Black Church</span> (Anatolian rug collection) · Council Square · Catherine's Gate · Guild Towers · Schei Quarter · narrow Rope Street · 1901 Synagogue</div>
+        <div class="event-notes"><em>Remainder of day free in pedestrian Old Town. Hotel: Casa Wagner ★★★</em></div>
+      </div>
+      <div class="event-badge-col"><span class="badge badge-tour">Tour</span></div>
+    </div>
+
+    <div class="event">
+      <div class="event-time">Snack</div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">🥐</span> Kürtőskalács Stand — Strada Michael Weiss</div>
+        <div class="event-meta">Best chimney cake in Brașov · ~2 min walk</div>
+      </div>
+      <div class="event-badge-col"></div>
+    </div>
+
+    <div class="event">
+      <div class="event-time">Lunch</div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">🌹</span> Rose Beans ⭐ 4.9 — Strada Michael Weiss 10</div>
+        <div class="event-meta">Focaccia + <span class="highlight">rose cappuccino</span> · Vegetarian-friendly</div>
+      </div>
+      <div class="event-badge-col"></div>
+    </div>
+
+    <div class="event">
+      <div class="event-time">Dinner</div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">🍗</span> La Ceaun — Piața Sfatului</div>
+        <div class="event-notes">Order: <em>Crispy Coquelet chicken (fried in cauldron) + rosemary potatoes + garlic sauce + hot polenta. Papanași for dessert.</em></div>
+      </div>
+      <div class="event-badge-col"></div>
+    </div>
+  </div>
+
+  <!-- DAY 4 -->
+  <div class="region-block">
+    <div class="region-title">Day 4 — Friday, April 10 · Bran Castle → Sinaia/Peleș Castle → Bucharest</div>
+
+    <div class="event">
+      <div class="event-time">Morning</div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">🧛</span> Bran Castle — "Dracula's Castle"</div>
+        <div class="event-meta">Built 1377 to guard Transylvania–Wallachia trade route · Became royal residence of Queen Marie of Romania in 1920s</div>
+        <div class="event-notes"><em>After visit: informal cheese sampling in Bran village</em></div>
+      </div>
+      <div class="event-badge-col"><span class="badge badge-tour">Tour</span></div>
+    </div>
+
+    <div class="event">
+      <div class="event-time">Midday</div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">👑</span> Peleș Castle &amp; Gardens — Sinaia</div>
+        <div class="event-meta">Royal residence of King Charles I · One of Europe's most beautiful summer royal residences · Casino building (Monte Carlo-inspired architecture)</div>
+      </div>
+      <div class="event-badge-col"><span class="badge badge-tour">Tour</span></div>
+    </div>
+
+    <div class="event">
+      <div class="event-time">Evening</div>
+      <div class="event-body">
+        <div class="event-title"><span class="event-emoji">🚗</span> Transfer back to Bucharest</div>
+        <div class="event-meta">Return to hotel · <strong style="color:var(--gold-light)">Tonight: Dinner at Linea / Closer to the Moon at 9:00 PM</strong></div>
+      </div>
+      <div class="event-badge-col"></div>
+    </div>
+  </div>
+
+  <!-- FOOD CHECKLIST -->
+  <div class="section-header">
+    <h2>🍩 Bucharest Street Food Checklist</h2>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="checklist" id="checklist">
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box">✓</div>
+      <span>🍩 Gogoși (donuts)</span>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box">✓</div>
+      <span>🥨 Covrigi (pretzels)</span>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box">✓</div>
+      <span>🍮 Papanași</span>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box">✓</div>
+      <span>☕ Origo Coffee</span>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box">✓</div>
+      <span>☕ M60 Café</span>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <div class="check-box">✓</div>
+      <span>🍆 Zacuscă dip</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Brian Konar · Romania April 2026 · Sony a6700 · 16–55mm f/2.8
+</div>
+
+<script>
+  function toggleCheck(el) {
+    el.classList.toggle('checked');
+  }
+</script>
+
+</body>
+</html>
