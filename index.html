@@ -168,7 +168,7 @@
 
   .day-label {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: 12px;
     padding: 10px 0 6px;
     border-bottom: 1px solid rgba(255,255,255,0.05);
@@ -187,6 +187,24 @@
     text-transform: uppercase;
     color: var(--muted);
   }
+
+  .weather-pill {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 20px;
+    padding: 3px 10px;
+    white-space: nowrap;
+  }
+  .weather-pill .w-icon { font-size: 14px; }
+  .weather-pill .w-hi { color: var(--cream2); font-weight: 500; }
+  .weather-pill .w-lo { color: var(--muted); }
+  .weather-pill .w-desc { color: var(--muted); font-size: 11px; }
 
   /* EVENT CARD */
   .event {
@@ -505,7 +523,8 @@
   <div class="day-block">
     <div class="day-label">
       <span class="day-name">Sunday</span>
-      <span class="day-date">April 5</span>
+      <span class="day-date">April 5 · Bucharest</span>
+      <span class="weather-pill"><span class="w-icon">🌤️</span><span class="w-hi">64°F / 18°C</span><span class="w-lo">↓44°F / 7°C</span><span class="w-desc">Partly sunny</span></span>
     </div>
 
     <div class="event">
@@ -543,7 +562,8 @@
   <div class="day-block">
     <div class="day-label">
       <span class="day-name">Monday</span>
-      <span class="day-date">April 6</span>
+      <span class="day-date">April 6 · Bucharest</span>
+      <span class="weather-pill"><span class="w-icon">☀️</span><span class="w-hi">67°F / 19°C</span><span class="w-lo">↓46°F / 8°C</span><span class="w-desc">Mostly sunny</span></span>
     </div>
 
     <div class="event">
@@ -599,7 +619,10 @@
 
   <!-- DAY 1 -->
   <div class="region-block">
-    <div class="region-title">Day 1 — Tuesday, April 7 · Bucharest → Olt River Gorge → Sibiu</div>
+    <div class="region-title" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+      <span>Day 1 — Tuesday, April 7 · Bucharest → Olt River Gorge → Sibiu</span>
+      <span class="weather-pill"><span class="w-icon">⛅</span><span class="w-hi">57°F / 14°C</span><span class="w-lo">↓39°F / 4°C</span><span class="w-desc">Sibiu · Mild, mostly dry</span></span>
+    </div>
 
     <div class="event">
       <div class="event-time">8:00 AM</div>
@@ -651,7 +674,10 @@
 
   <!-- DAY 2 -->
   <div class="region-block">
-    <div class="region-title">Day 2 — Wednesday, April 8 · Sibiu → Biertan → Sighișoara</div>
+    <div class="region-title" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+      <span>Day 2 — Wednesday, April 8 · Sibiu → Biertan → Sighișoara</span>
+      <span class="weather-pill"><span class="w-icon">🌦️</span><span class="w-hi">55°F / 13°C</span><span class="w-lo">↓39°F / 4°C</span><span class="w-desc">Sighișoara · Partly cloudy, light rain possible</span></span>
+    </div>
 
     <div class="event">
       <div class="event-time">Morning</div>
@@ -704,7 +730,10 @@
 
   <!-- DAY 3 -->
   <div class="region-block">
-    <div class="region-title">Day 3 — Thursday, April 9 · Sighișoara → Saxon Villages → Viscri → Brașov</div>
+    <div class="region-title" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+      <span>Day 3 — Thursday, April 9 · Sighișoara → Saxon Villages → Viscri → Brașov</span>
+      <span class="weather-pill"><span class="w-icon">🌥️</span><span class="w-hi">55°F / 13°C</span><span class="w-lo">↓41°F / 5°C</span><span class="w-desc">Brașov · Cool, variable</span></span>
+    </div>
 
     <div class="event">
       <div class="event-time">Morning</div>
@@ -755,7 +784,10 @@
 
   <!-- DAY 4 -->
   <div class="region-block">
-    <div class="region-title">Day 4 — Friday, April 10 · Bran Castle → Sinaia/Peleș Castle → Bucharest</div>
+    <div class="region-title" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+      <span>Day 4 — Friday, April 10 · Bran Castle → Sinaia/Peleș Castle → Bucharest</span>
+      <span class="weather-pill"><span class="w-icon">⛅</span><span class="w-hi">52°F / 11°C</span><span class="w-lo">↓41°F / 5°C</span><span class="w-desc">Sinaia · Cool at castles · Bucharest 65°F on return</span></span>
+    </div>
 
     <div class="event">
       <div class="event-time">Morning</div>
@@ -791,7 +823,8 @@
   <div class="day-block">
     <div class="day-label">
       <span class="day-name">Friday</span>
-      <span class="day-date">April 10</span>
+      <span class="day-date">April 10 · Bucharest</span>
+      <span class="weather-pill"><span class="w-icon">⛅</span><span class="w-hi">65°F / 18°C</span><span class="w-lo">↓44°F / 7°C</span><span class="w-desc">Partly cloudy</span></span>
     </div>
 
     <div class="event has-warn">
@@ -810,6 +843,7 @@
     <div class="day-label">
       <span class="day-name">Saturday</span>
       <span class="day-date">April 11 · <span style="color:#E74C3C;font-size:11px;">PACKED DAY — pace yourself</span></span>
+      <span class="weather-pill"><span class="w-icon">🌤️</span><span class="w-hi">62°F / 17°C</span><span class="w-lo">↓43°F / 6°C</span><span class="w-desc">Mostly sunny · chilly at midnight mass</span></span>
     </div>
 
     <div class="event">
@@ -861,7 +895,8 @@
   <div class="day-block">
     <div class="day-label">
       <span class="day-name">Sunday</span>
-      <span class="day-date">April 12 · Easter</span>
+      <span class="day-date">April 12 · Easter · Bucharest</span>
+      <span class="weather-pill"><span class="w-icon">🌤️</span><span class="w-hi">65°F / 18°C</span><span class="w-lo">↓45°F / 7°C</span><span class="w-desc">Partly sunny</span></span>
     </div>
 
     <div class="event">
